@@ -583,7 +583,8 @@ Returns the 13 character encrypted password."
   "Generate random salt string of given length (default 2)"
   (let((salt-chars
         "abcdefghijklmnopqestuvwxyzABCDEFGHIJKLMNOPQESTUVWXYZ0123456789./")
-       (salt (make-string length)))
+       (salt (make-string length))
+       (*random-state* (make-random-state t)))
     (dotimes(idx (length salt))
       (setf (char salt idx) (char salt-chars (random (length salt-chars)))))
     salt))
